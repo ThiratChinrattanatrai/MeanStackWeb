@@ -1,10 +1,27 @@
 const express = require('express');
+const mongoose = require('mongoose');
+const config = require('./config/database');
 const cors = require('cors');
 const bodyParser = require('body-parser');
+const users = require('./route/user.route');
+const passport = require('passport');
+
 let app = express();
 
 // port
 const port = process.env.PORT || 3000;
+
+// connect to database
+mongoose.connect(config.database);
+
+// listen to connect to database success event
+mongoose.connection.on('connected',() => {
+    console.log('database is connected to :' + config.database);
+});
+// list to connect to databse error event
+mongoose.connection.on('error',() => {
+    console.log('cannot connect to database');
+});
 
 // use cors middle ware
 app.use(cors());
@@ -12,11 +29,20 @@ app.use(cors());
 // use body-parser
 app.use(bodyParser.json());
 
+// mount path
+app.use('/users/',users);
+
+// passport
+app.use(passport.initialize());
+app.use(passport.session());
+require('./config/passport')(passport);
+
+
 // listen to / 
 app.get('/',(request,response) => {
     response.send('this is root');
 });
 // run
 app.listen(port,() => {
-    console.log("server running at port 3000");
+    console.log("server running at port :" + port);
 });
