@@ -37,11 +37,18 @@ app.use(passport.initialize());
 app.use(passport.session());
 require('./config/passport')(passport);
 
+// for deploy
+app.use(express.static(path.join(__dirname,'public')));
 
 // listen to / 
 app.get('/',(request,response) => {
     response.send('this is root');
 });
+
+app.get('*',(request,response) => {
+    response.sendFile(path.join(__dirname,'public/index.html'));
+});
+
 // run
 app.listen(port,() => {
     console.log("server running at port :" + port);
