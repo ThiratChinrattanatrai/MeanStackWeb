@@ -18,9 +18,10 @@ export class LoginComponent implements OnInit {
   constructor(private validateService:ValidateService,
     private authService:AuthenticateService,
     private router:Router,
-    private flashMessage:FlashMessagesService) { }
+    private flashMessage:FlashMessagesService){}
 
   ngOnInit() {
+
   }
 
   onAuthenticate(){
