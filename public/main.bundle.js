@@ -27,7 +27,7 @@ module.exports = ""
 /***/ "./src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<app-navbar></app-navbar>\n<flash-messages></flash-messages>\n<router-outlet></router-outlet>\n\n"
+module.exports = "<app-navbar></app-navbar>\n<flash-messages></flash-messages>\n<div class=\"container\">\n    <router-outlet></router-outlet>\n</div>>\n\n"
 
 /***/ }),
 
@@ -388,7 +388,7 @@ module.exports = ""
 /***/ "./src/app/component/navbar/navbar.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\n    <a class=\"navbar-brand\" href=\"#\">Navbar</a>\n    <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarNavDropdown\" aria-controls=\"navbarNavDropdown\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n      <span class=\"navbar-toggler-icon\"></span>\n    </button>\n    <div class=\"collapse navbar-collapse\" id=\"navbarNavDropdown\">\n      <ul class=\"navbar-nav\">\n        <li class=\"nav-item\">\n          <a class=\"nav-link\" href=\"#\">Home</a>\n        </li>\n        <li class=\"nav-item\">\n          <a class=\"nav-link\" href=\"#\">dashboard</a>\n        </li>\n        <li class=\"nav-item\">\n          <a class=\"nav-link\" href=\"#\">TODO</a>\n        </li>\n      </ul>\n    </div>\n  </nav>"
+module.exports = "<nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\n    <a class=\"navbar-brand\" href=\"#\">Navbar</a>\n    <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarNavDropdown\" aria-controls=\"navbarNavDropdown\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n      <span class=\"navbar-toggler-icon\"></span>\n    </button>\n    <div class=\"collapse navbar-collapse\" id=\"navbarNavDropdown\">\n      <ul class=\"navbar-nav\">\n        <li class=\"nav-item\">\n          <a class=\"nav-link\" [routerLink]=\"['/home']\">Home</a>\n        </li>\n        <li class=\"nav-item\">\n          <a class=\"nav-link\" [routerLink]=\"['/dashboard']\">dashboard</a>\n        </li>\n        <li class=\"nav-item\">\n          <a class=\"nav-link\" [routerLink]=\"['/todo]\">TODO</a>\n        </li>\n        <li class=\"nav-item\">\n          <a class=\"nav-link\" [routerLink]=\"['/login]\">Log in</a>\n        </li>\n      </ul>\n    </div>\n  </nav>"
 
 /***/ }),
 
@@ -557,12 +557,12 @@ var AuthenticateService = /** @class */ (function () {
         this.authToken = "";
     }
     AuthenticateService.prototype.registerUser = function (user) {
-        return this.http.post('http://localhost:3000/users/register', user);
-        // return this.http.post('users/register',user);
+        // return this.http.post('http://localhost:3000/users/register',user);
+        return this.http.post('users/register', user);
     };
     AuthenticateService.prototype.authenticateUser = function (user) {
-        return this.http.post('http://localhost:3000/users/authenticate', user);
-        // return this.http.post('users/authenticate',user);
+        // return this.http.post('http://localhost:3000/users/authenticate',user);
+        return this.http.post('users/authenticate', user);
     };
     AuthenticateService.prototype.storeUserData = function (token, user) {
         localStorage.setItem("token", token);
@@ -579,8 +579,8 @@ var AuthenticateService = /** @class */ (function () {
                 'Authorization': this.authToken
             })
         };
-        return this.http.get('http://localhost:3000/users/profile', httpOptions);
-        // return this.http.get('users/profile',httpOptions);
+        // return this.http.get('http://localhost:3000/users/profile',httpOptions);
+        return this.http.get('users/profile', httpOptions);
     };
     AuthenticateService.prototype.isTokenExpired = function () {
         var helper = new __WEBPACK_IMPORTED_MODULE_3__auth0_angular_jwt__["a" /* JwtHelperService */]();
