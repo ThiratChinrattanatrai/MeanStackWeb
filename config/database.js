@@ -1,5 +1,5 @@
 module.exports = {
     // database: 'mongodb://<admin>:<password>@ds135179.mlab.com:35179/meandb',
-    database: 'mongodb://localhost:27017/Mean_Stack_DB',
+    database: process.env.DB_CONNECTION,
     secret: 'abc123-'
 }
