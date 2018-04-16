@@ -5,6 +5,7 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const users = require('./route/user.route');
 const passport = require('passport');
+const path = require('path');
 
 let app = express();
 
