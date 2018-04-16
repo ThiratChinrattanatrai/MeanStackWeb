@@ -46,6 +46,11 @@ app.get('/',(request,response) => {
     response.send('this is root');
 });
 
+app.get('/test',(request,responsee) => {
+    response.send(process.env.TESTVAR);
+    console.log(process.env.TESTVAR);
+});
+
 app.get('*',(request,response) => {
     response.sendFile(path.join(__dirname,'public/index.html'));
 });
