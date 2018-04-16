@@ -12,17 +12,17 @@ let app = express();
 // port
 const port = process.env.PORT || 8080;
 
-// connect to database
-mongoose.connect(config.database);
+// // connect to database
+// mongoose.connect(config.database);
 
-// listen to connect to database success event
-mongoose.connection.on('connected',() => {
-    console.log('database is connected to :' + config.database);
-});
-// list to connect to databse error event
-mongoose.connection.on('error',() => {
-    console.log('cannot connect to database');
-});
+// // listen to connect to database success event
+// mongoose.connection.on('connected',() => {
+//     console.log('database is connected to :' + config.database);
+// });
+// // list to connect to databse error event
+// mongoose.connection.on('error',() => {
+//     console.log('cannot connect to database');
+// });
 
 // use cors middle ware
 app.use(cors());
@@ -54,4 +54,5 @@ app.get('*',(request,response) => {
 app.listen(port,() => {
     console.log("server running at port :" + port);
     console.log("DB : " + process.env.DB_CONNECTION);
+    console.log("config : " + config.database);
 });
